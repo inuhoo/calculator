@@ -99,3 +99,34 @@ function backspace() {
 document.querySelector("[value='bksp']").addEventListener('click', e => {
    backspace();
 });
+
+document.addEventListener('keyup', e => {
+    console.log(e);
+    switch (e.key) {
+        case "Backspace":
+            backspace();
+            break; 
+        case "Delete":
+            clearAll();
+            break;
+        case "1":
+        case "2":
+        case "3":
+        case "4":
+        case "5":
+        case "6":
+        case "7":
+        case "8":
+        case "9":
+        case "0":
+        case ".":
+            updateDisplay(e.key);
+            break;    
+        case "+":
+        case "-":
+        case "*":
+        case "/":
+            operationSelect(e.key);
+            break;
+    }
+})
