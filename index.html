@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,37 +9,46 @@
     <link rel="stylesheet" href="assets/styles.css">
     <title>Web Calculator</title>
 </head>
-<body>
-<div id="calc">
-    <div id="screen"></div>
-    <div id="controls">
-        <button></button>
-        <button></button>
-        <button></button>
-        <button></button>
-        <button></button>
-        <button></button>
-        <button></button>
-        <button></button>
-        <button></button>
-        <button></button>
-        <button></button>
-        <button></button>
-        <button></button>
-        <button></button>
-        <button></button>
-        <button></button>
-        <button></button>
-        <button></button>
-        <button></button>
-        <button></button>
-        <button></button>
-        <button></button>
-        <button></button>
-        <button></button>
-    </div>
-</div>
 
-<script src="assets/scripts.js"></script>
+<body>
+    <div id="calc">
+        <div id="screen">
+            <div id="sum">3+4</div>
+            <div id="answer">0.35345234</div>
+        </div>
+        <div id="controls">
+            <!--row 1-->
+            <button class="clear">AC</button>
+            <button class="clear">C</button>
+            <button>&plusmn;</button>
+            <button class="operator">&times;</button>
+
+            <!--row 2-->
+            <button class='digit'>7</button>
+            <button class='digit'>8</button>
+            <button class='digit'>9</button>
+            <button class="operator">&div;</button>
+
+            <!--row 3-->
+            <button class='digit'>4</button>
+            <button class='digit'>5</button>
+            <button class='digit'>6</button>
+            <button class="operator">&minus;</button>
+
+            <!--row 4-->
+            <button class='digit'>1</button>
+            <button class='digit'>2</button>
+            <button class='digit'>3</button>
+            <button class="operator">&plus;</button>
+            <!-- row 5 -->
+            <button class='digit'>0</button>
+            <button class='digit'>.</button>
+            <button id='equals'>&equals;</button>
+
+        </div>
+    </div>
+
+    <script src="assets/scripts.js"></script>
 </body>
+
 </html>
