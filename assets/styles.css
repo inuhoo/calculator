@@ -21,10 +21,10 @@ body {
     text-align: right;
     padding: 40px 20px;
 }
-#sum {
+#sub {
     padding: 35px 0 0 0;
 }
-#answer{
+#main{
     font-size: 34pt
 }
 #controls {
