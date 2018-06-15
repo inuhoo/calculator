@@ -47,7 +47,10 @@ equals.addEventListener('click', e => {
 
 
 // add digit number to the display
-function updateDisplay(num) {
+function updateDisplay(num) {    
+    if (num == "." && /\./.test(mainDisplay.innerHTML)) {
+        return;
+    }
     mainDisplay.innerHTML += num;
 }
 
