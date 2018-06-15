@@ -40,49 +40,62 @@ function operate() {
     }
 }
 
-
-
-// EVENTS
-// ------
-
-
-
-// add click events to digit buttons
-for (i = 0; i < digits.length; i++) {
-    digits[i].addEventListener('click' , e => {
-        mainDisplay.innerHTML += e.target.value; 
-    });
-};
-
-// add click events to operator buttons
-for (i = 0; i < operators.length; i++) {
-    operators[i].addEventListener('click' , e => {
-        subDisplay.innerHTML = mainDisplay.innerHTML + " " + e.target.value;
-        mainDisplay.innerHTML = "";
-    });
-};
-
 // run operate function on equals press
 equals.addEventListener('click', e => {
+    operate();
 });
+
+
+// add digit number to the display
+function updateDisplay(num) {
+    mainDisplay.innerHTML += num;
+}
+
+for (i = 0; i < digits.length; i++) {
+    digits[i].addEventListener('click' , e => {
+        updateDisplay(e.target.value); 
+    });
+};
+
+// update displays when operator is selected
+function operationSelect(op) {
+    subDisplay.innerHTML = mainDisplay.innerHTML + " " + op;
+    mainDisplay.innerHTML = "";
+}
+
+for (i = 0; i < operators.length; i++) {
+    operators[i].addEventListener('click' , e => {
+        operationSelect(e.target.value);
+    });
+};
 
 
 
 // CLEAR FUNCTIONS 
 // -----------------
-
+function clearAll() {
+    subDisplay.innerHTML = "" ; 
+    mainDisplay.innerHTML = "";
+}
 
 //clear all button press
 document.querySelector("[value='clr-all']").addEventListener('click', e => {
-    subDisplay.innerHTML = "" ; 
-    mainDisplay.innerHTML = "";
+    clearAll();
 });
+
+function clearCurrent() {
+    mainDisplay.innerHTML = "";
+}
 
 //clear button press
 document.querySelector("[value='clr']").addEventListener('click', e => {
-    mainDisplay.innerHTML = "";
+    clearCurrent();
 });
+
+function backspace() {
+    mainDisplay.innerHTML = mainDisplay.innerHTML.slice(0, -1);
+}
 //clear button press
 document.querySelector("[value='bksp']").addEventListener('click', e => {
-    mainDisplay.innerHTML = mainDisplay.innerHTML.slice(0, -1);
+   backspace();
 });
