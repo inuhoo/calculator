@@ -5,7 +5,7 @@
 body {
     color: #324D69;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #FFFAF6;
+    background-color: #FDFAFF;
 }
 p {
     color: #aaa;
@@ -20,7 +20,7 @@ a {
 a:hover {
     color: #999
 }
-#calc {
+#calc-body {
     width: 400px;
     height: 600px;
     margin: 20px auto;

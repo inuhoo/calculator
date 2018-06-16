@@ -4,9 +4,7 @@ const operators = Array.from(document.querySelectorAll('.operator')); //select a
 const equals = document.querySelector('#equals')
 const mainDisplay = document.querySelector('#main');
 const subDisplay = document.querySelector('#sub');
-let operands = [];
-let operation;
-let solution;
+let calc = {a: "", b: "", operator: "", solution: ""};
 let reset = 0;
 
 // OPERATIONS
@@ -18,14 +16,13 @@ function minus(a,b) {return a - b;}
 function divide(a,b) {return (b === 0 ? "Oops there it goes" : a / b);}
 function multiply(a,b) {return a * b;}
 
-// master operate function
-function operate(nums, o) {
-    subDisplay.innerHTML = operands[0] + " " + operation + " " + operands[1]
-    switch (o) {
-        case 'x': return multiply(nums[0], nums[1]);
-        case '/': return divide(nums[0], nums[1]);
-        case '-': return minus(nums[0], nums[1]);
-        case '+': return add(nums[0], nums[1]);
+// master operate function using calc object
+function operate() {
+    switch (calc.operator) {
+        case '*': return multiply(calc.a, calc.b);
+        case '/': return divide(calc.a, calc.b);
+        case '-': return minus(calc.a, calc.b);
+        case '+': return add(calc.a, calc.b);
     }
 }
 
@@ -40,7 +37,33 @@ function updateDisplay(num) {
 }
 
 // update displays when operator is selected
-function operationSelect(op) {};
+function operationSelect(op) {
+    if (calc.a && mainDisplay.innerHTML) {
+        calc.b = Number(mainDisplay.innerHTML);
+        calc.a = operate();
+        calc.operator = op;
+        subDisplay.innerHTML = calc.a + " " + op;
+        mainDisplay.innerHTML = ""
+    } else if (calc.a) {
+        calc.operator = op;
+        subDisplay.innerHTML = calc.a + " " + calc.operator;
+    } else {
+        calc.a = Number(mainDisplay.innerHTML);
+        calc.operator = op;
+        mainDisplay.innerHTML = "";
+        subDisplay.innerHTML = calc.a + " " + calc.operator;
+    }
+};
+
+function completeCalc() {
+    if (calc.a && mainDisplay.innerHTML && calc.operator) {
+            calc.b = Number(mainDisplay.innerHTML)
+            subDisplay.innerHTML += " " + calc.b
+            mainDisplay.innerHTML = operate();
+            calc = {};
+            reset = 1; // toggle display reset
+        }
+}
 
 
 // EVENT LISTENERS
@@ -62,11 +85,8 @@ for (i = 0; i < operators.length; i++) {
 
 // event listener for equals button
 equals.addEventListener('click', e => {
-    mainDisplay.innerHTML = operate(operands, operation);
-    operands = [];
-    reset = 1; // toggle display reset
+    completeCalc();
 });
-
 
 
 // CLEAR FUNCTIONS
@@ -74,7 +94,7 @@ equals.addEventListener('click', e => {
 function clearAll() {
     subDisplay.innerHTML = "" ;
     mainDisplay.innerHTML = "";
-    operands = [];
+    calc = {};
     operation = "";
 }
 
@@ -130,7 +150,7 @@ document.addEventListener('keyup', e => {
             operationSelect(e.key);
             break;
         case "Enter":
-            // missing equals function at the moment.
+            completeCalc();
             break;
     }
 })
